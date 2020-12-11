@@ -15,39 +15,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drogasil.farmacia.model.Categoria;
-import com.drogasil.farmacia.repository.CategoriaRepository;
+import com.drogasil.farmacia.model.Produto;
+import com.drogasil.farmacia.repository.ProdutoRepository;
 
 @RestController
-@RequestMapping("/farmacia")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class CategoriaController {
-	
+@RequestMapping("/produto")
+public class ProdutoController {
 	@Autowired
-	private CategoriaRepository repository;
-	 // first method
+	private ProdutoRepository repository;
+	
+	//first method
 	@GetMapping
-	public ResponseEntity<List<Categoria>> findAllCategoria(){
+	public ResponseEntity<List<Produto>> findAllProduto(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	//second method
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> findByIdCategoria(@PathVariable long id){
+	public ResponseEntity<Produto> findByIdProduto(@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 	//third method
 	@PostMapping
-	public ResponseEntity<Categoria> postCategoria(@RequestBody Categoria categoria){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));
+	public ResponseEntity<Produto> postProduto(@RequestBody Produto produto){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));
 	}
 	//fourth method
 	@PutMapping
-	public ResponseEntity<Categoria> putCategoria (@RequestBody Categoria categoria){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(categoria));
+	public ResponseEntity<Produto> putProduto(@RequestBody Produto produto){
+		return ResponseEntity.ok(repository.save(produto));
 	}
 	@DeleteMapping("/{id}")
-	public void deleteCategoria(@PathVariable long id) {
+	public void deleteProduto(@PathVariable long id) {
 		repository.deleteById(id);
 	}
-	
+
 }

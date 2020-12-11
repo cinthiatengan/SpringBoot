@@ -1,6 +1,9 @@
-package com.drogasil.farmacia.controller;
+package org.escola.diretoria.controller;
 
 import java.util.List;
+
+import org.escola.diretoria.repository.AlunoRepository;
+import org.escola.diretoria.model.Aluno;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,39 +18,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drogasil.farmacia.model.Categoria;
-import com.drogasil.farmacia.repository.CategoriaRepository;
-
 @RestController
-@RequestMapping("/farmacia")
+@RequestMapping("/aluno")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class CategoriaController {
-	
+
+public class AlunoController {
 	@Autowired
-	private CategoriaRepository repository;
-	 // first method
+	private AlunoRepository repository;
+	//first method
 	@GetMapping
-	public ResponseEntity<List<Categoria>> findAllCategoria(){
+	public ResponseEntity<List<Aluno>> findAllAluno(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	//second method
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> findByIdCategoria(@PathVariable long id){
+	public ResponseEntity<Aluno> findByIdAluno(@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 	//third method
 	@PostMapping
-	public ResponseEntity<Categoria> postCategoria(@RequestBody Categoria categoria){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));
+	public ResponseEntity<Aluno> postAluno(@RequestBody Aluno aluno){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(aluno));
 	}
 	//fourth method
 	@PutMapping
-	public ResponseEntity<Categoria> putCategoria (@RequestBody Categoria categoria){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(categoria));
+	public ResponseEntity<Aluno> putAluno(@RequestBody Aluno aluno){
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(aluno));
 	}
 	@DeleteMapping("/{id}")
-	public void deleteCategoria(@PathVariable long id) {
+	public void deleteAluno(@PathVariable long id) {
 		repository.deleteById(id);
 	}
-	
+
 }
