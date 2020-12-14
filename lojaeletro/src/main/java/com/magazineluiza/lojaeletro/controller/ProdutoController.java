@@ -37,13 +37,17 @@ public class ProdutoController {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 	/*@GetMapping("/{valor1}/{valor2}")
-	public ResponseEntity<List<Produto>> PegarTodosRange(@PathVariable double valor1, @PathVariable double valor2){
+	public ResponseEntity<List<Produto>> GetAllByRange(@PathVariable double valor1, @PathVariable double valor2){
 		return ResponseEntity.ok(repository.RangePreco(valor1, valor2));
-	}*/ // por query do MySQL
+	}*/ // por query do MySQL (desafio 1)
 	
-	@GetMapping("/range/{preco1}/{preco2}") // por metodo between
+	@GetMapping("/range/{preco1}/{preco2}") // por metodo between (desafio 1)
 	public ResponseEntity <List<Produto>> GetAllByRange(@PathVariable BigDecimal preco1, @PathVariable BigDecimal preco2){
 		return ResponseEntity.ok(repository.findAllByPrecoBetween(preco1, preco2));	
+	}
+	@GetMapping("porTipo/{tipoId}/{valor}")// por query (desafio 2)
+	public ResponseEntity <List<Produto>> GetAllRangesByType(@PathVariable int tipoId, @PathVariable double valor){
+		return ResponseEntity.ok(repository.RangePrecoTipo(tipoId, valor));
 	}
 
 	@PostMapping
