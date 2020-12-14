@@ -3,6 +3,7 @@ package com.magazineluiza.lojaeletro.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class TipoEletro {
 	@NotNull
 	private String descricao; // type of product, television, fridge, oven,etc.
 	@NotNull
+	//@Column(name = "Ativo")
 	private boolean ativo; // if it is active or not
 
 	// relationship between tables
@@ -54,6 +56,14 @@ public class TipoEletro {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public List<Produto> getProduto() {
+		return produto;
+	}
+
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.magazineluiza.lojaeletro.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotNull
+	//@Column(name = "Descrição")
 	private String descricao; //de cozinha, entretenimento, limpeza, beleza, segurança...
 	
 	//relationship between tables Categoria 1-----N Produtos
@@ -41,6 +43,12 @@ public class Categoria {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public List<Produto> getProduto() {
+		return produto;
+	}
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
 	
 	

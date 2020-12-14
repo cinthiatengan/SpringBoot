@@ -2,7 +2,6 @@ package com.magazineluiza.lojaeletro.model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,14 +23,13 @@ public class Produto {
 	private long id;
 	@NotNull
 	@Size(max = 500)
-	@Column(name = "Nome")
 	private String nome;
 	@NotNull
-	@Column(name = "Quantidade")
 	private int quantidade;
 	@NotNull
-	@Column(name = "Valor")
 	private BigDecimal preco;
+	@NotNull
+	private String marca;
 
 	// relationship between tables Produto N ---- 1 Categoria
 	@ManyToOne
@@ -44,6 +42,30 @@ public class Produto {
 	private TipoEletro tipoeletro;
 
 	// getters and setters
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public TipoEletro getTipoeletro() {
+		return tipoeletro;
+	}
+
+	public void setTipoeletro(TipoEletro tipoeletro) {
+		this.tipoeletro = tipoeletro;
+	}
+
 	public long getId() {
 		return id;
 	}
