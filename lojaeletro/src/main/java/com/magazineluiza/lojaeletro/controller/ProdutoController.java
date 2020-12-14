@@ -1,5 +1,6 @@
 package com.magazineluiza.lojaeletro.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,15 @@ public class ProdutoController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> findByIdProduto(@PathVariable long id) {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+	}
+	/*@GetMapping("/{valor1}/{valor2}")
+	public ResponseEntity<List<Produto>> PegarTodosRange(@PathVariable double valor1, @PathVariable double valor2){
+		return ResponseEntity.ok(repository.RangePreco(valor1, valor2));
+	}*/ // por query do MySQL
+	
+	@GetMapping("/range/{preco1}/{preco2}") // por metodo between
+	public ResponseEntity <List<Produto>> GetAllByRange(@PathVariable BigDecimal preco1, @PathVariable BigDecimal preco2){
+		return ResponseEntity.ok(repository.findAllByPrecoBetween(preco1, preco2));	
 	}
 
 	@PostMapping
