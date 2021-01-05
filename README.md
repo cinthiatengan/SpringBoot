@@ -1,7 +1,7 @@
 
 ***
 ## SpringBoot
-Rest API for practical exercises in Java connected to MySQL.
+Rest API for practical exercises in Java, using eclipse IDE communicating with MySQL and finally tested with Postman.
 
 ***
 
